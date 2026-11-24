@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${pagina}">Página</title>
+<style>
+	body { font-family: sans-serif; background: #f2f4f7; }
+	.caja { width: 420px; margin: 80px auto; padding: 25px; background: white;
+	        border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+	nav a { margin-right: 15px; }
+	.salir { display: inline-block; margin-top: 20px; padding: 8px 14px; background: #d93025;
+	         color: white; text-decoration: none; border-radius: 4px; }
+</style>
+</head>
+<body>
+	<!-- Plantilla común para inicio, página1 y página2 -->
+	<div class="caja">
+		<h2>Bienvenido <span th:text="${usuario}">usuario</span></h2>
+		<p>Estás en: <strong th:text="${pagina}">inicio</strong></p>
+
+		<!-- Enlaces a las DEMÁS páginas (se oculta la actual) -->
+		<nav>
+			<a th:href="@{/}"        th:unless="${pagina == 'inicio'}">Inicio</a>
+			<a th:href="@{/pagina1}" th:unless="${pagina == 'página1'}">Página 1</a>
+			<a th:href="@{/pagina2}" th:unless="${pagina == 'página2'}">Página 2</a>
+		</nav>
+
+		<!-- Cerrar sesión (nivel "Bien") -->
+		<a class="salir" th:href="@{/logout}">Cerrar sesión</a>
+	</div>
+</body>
+</html>
